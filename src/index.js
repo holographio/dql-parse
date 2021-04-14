@@ -1,4 +1,4 @@
-const { parse } = require('./build/Release/dql_parse')
+const { parse } = require('../build/Release/dql_parse')
 
 module.exports = {
 	parse: (query, variables = {}) => {
