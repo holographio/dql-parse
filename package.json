@@ -1,0 +1,22 @@
+{
+  "name": "dql-parse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "./index.js",
+  "gypfile": true,
+  "scripts": {
+    "build": "npm run build:go && npm run build:addon",
+    "build:addon": "node-gyp configure build",
+    "build:go": "go mod download && go build -buildmode c-shared -o build/dql-parse.so src/dql-parse.go"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-addon-api": "^3.1.0"
+  },
+  "devDependencies": {
+    "node-gyp": "^8.0.0"
+  }
+}

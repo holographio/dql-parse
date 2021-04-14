@@ -1,0 +1,1 @@
+This directory is committed with the repo to preserve permissions i.e. to avoid the directory being created by docker as root.
