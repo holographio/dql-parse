@@ -4,24 +4,25 @@ import (
 	"C"
 	"github.com/dgraph-io/dgraph/gql"
 	"encoding/json"
-	"fmt"
 )
 
 //export Parse
-func Parse(query *C.char, variables_json *C.char, result_pointer **C.char) C.int {
+func Parse(query *C.char, variables_json *C.char) *C.char {
 	var variables map[string]string
 	json.Unmarshal([]byte(C.GoString(variables_json)), &variables)
 	parsed, err := gql.Parse(gql.Request{ Str: C.GoString(query), Variables: variables })
-	// if err != nil { panic(err) }
-	// if err != nil { return C.CString("error") }
-	// if err != nil { return "error" }
-	if err != nil { fmt.Println("#error", err) } // TODO:
+	if err != nil {
+		json_bytes, err := json.Marshal(map[string]string{ "error": err.Error() })
+		if err != nil { panic(err) }
+		return C.CString(string(json_bytes))
+	}
 	json_bytes, err := json.Marshal(parsed)
-	if err != nil { fmt.Println("#error", err) } // TODO:
-	s := string(json_bytes)
-	length := len(s)
-	*result_pointer = C.CString(s)
-	return C.int(length)
+	if err != nil {
+		json_bytes, err := json.Marshal(map[string]string{ "error": err.Error() })
+		if err != nil { panic(err) }
+		return C.CString(string(json_bytes))
+	}
+	return C.CString(string(json_bytes))
 }
 
 func main() {}
