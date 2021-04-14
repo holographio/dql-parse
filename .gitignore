@@ -3,6 +3,8 @@
 */node_modules/@*
 /build/*
 !/build/.keep
+!/build/dql-parse.h
+!/build/dql-parse.so
 /vendor
 /temp
 /tmp
