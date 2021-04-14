@@ -1,3 +1,4 @@
+#define NAPI_VERSION 4
 #include <napi.h>
 #include "build/dql-parse.h"
 
