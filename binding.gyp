@@ -10,7 +10,7 @@
             "<!@(node -p \"require('node-addon-api').include\")"
         ],
         "libraries": [
-             "<(module_root_dir)/lib/dql-parse.so"
+             "<(module_root_dir)/lib/dql/parse.so"
         ],
         'dependencies': [
             "<!(node -p \"require('node-addon-api').gyp\")"

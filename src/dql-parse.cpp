@@ -1,6 +1,6 @@
 #define NAPI_VERSION 4
 #include <napi.h>
-#include "../lib/dql-parse.h"
+#include "../lib/dql/parse.h"
 
 Napi::String parse(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();

@@ -8,7 +8,9 @@
   "scripts": {
     "build": "npm run build:go && npm run build:addon",
     "build:addon": "node-gyp configure build",
-    "build:go": "go mod download && go build -buildmode c-shared -o lib/dql-parse.so src/dql-parse.go"
+    "build:docker": "docker build -t holographio/dql-parse-build .",
+    "build:go": "npm run build:docker && docker run --rm -v \"${PWD}:/home/user/app\" holographio/dql-parse-build",
+    "clean:docker": "docker rmi holographio/dql-parse-build"
   },
   "keywords": [],
   "author": "",
